@@ -18,7 +18,7 @@ IP is a network addressing protocol for *internetworking* (connecting local netw
 As opposed to a **connection-oriented** protocol, the IP is not enabling sessions between communicating hosts. No information is exchanged to control if the message is correctly carried and received. IP does not provide **error detection** nor **error recovery**. That is the reason why it is sometimes called an *unreliable* protocol -meaning the error detection and the session functionnalities are left to other protocols-.
 
 ## Datagram
-![The IPv4 header](./IPv4Header.png)
+![The IPv4 header](./images/IPv4Header.png)
 The header is composed of 6 32 bits words. As opposed to the Ethernet frame, some fields are shorter than a byte.
 
 ### Version
