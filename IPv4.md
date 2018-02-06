@@ -1,9 +1,6 @@
 # Internet Protocol v4
 [RFC 791](https://tools.ietf.org/html/rfc791) Internet Standard
 
-### Internet Protocol v4
-[RFC 791](https://tools.ietf.org/html/rfc791) Internet Standard
-
 ## Summary
 IP is a network addressing protocol for *internetworking* (connecting local networks between them). It is a **connectionless** and **decentralized** protocol. It is a network layer protocol (layer #3 in the OSI model).
 
@@ -29,9 +26,13 @@ Coded on 4 bits, it is the id of the version of the Internet Protocol. Allows de
 ### IHL
 Internet Header Length. Declares the length of current header in 32 bits words [5 - 15]. 5 words are mandatory, some options can produce more words.
 
-### TOS
-Type Of Service ([RFC 3168](https://tools.ietf.org/html/rfc3168)).
+### TOS / DSCP - ECN
+Type Of Service 
+Differentiated Services Codes Point - Explicit Congestion Notification
+([RFC 3168](https://tools.ietf.org/html/rfc3168)).
 These field is supposed to help define different levels and quality of service with flags of varied lengths. The problem being that many RFCs defined different uses and formats of these codes, some non backward-compatible. Some layer 3 equipments (*routers*) reinitialize this field to zero because they don't implement this functionality.
+![DSCP field](./images/dscp.png)
+
 
 ### Total Length
 For the length of both header and data. Since it is coded on 16 bits, the datagram has a max size of 2^16 = 65535 Bytes.
@@ -60,6 +61,16 @@ When reaches 0, the packet is dropped.
 - 0x06 : TCP
 - 0x11 : UDP
 
+### Header checksum
+Detection of error mecanism. The checksum is used to verify if the header (thus the packet) has been recieved without errors.
+
+### Source & Destination address
+Self-explanatory
+
+### Options & padding
+Various fields of options can be set. Options offer various additionnal informations like the timestamp, security options, the route used, etc.
+IHL has to be above 5 for the networks equipments to know there are options enabled. The remaining bits are set to zero (padding).
+
 ## Routing
 In IP logic, there are only two types of network devices :
 * **Hosts** which are only able to emit and recieve datagrams
@@ -78,6 +89,11 @@ Classes are a way to guess the network mask
 `0.0.0.0`
 `127.0.0.0`
 `255.255.255.255`
+
+
+## TODO
+* Explain fragmentation mecanism and why some routers have to fragment a packet and others do not
+* Explain legacy address classes and classless
 
 ## Sources
 [Entête IP](http://www.frameip.com/entete-ip/) sur le site frameip.com
